@@ -2,8 +2,6 @@
 
 ## Q1. Write a function add(1)(1) that will add two numbers.
 
-## Answer:
-
 <pre>
 const add = function(x) {
   return function(y) {
@@ -24,8 +22,6 @@ add(1)(1) // 2
 
 ## Q2. An array, say arr=[0,0,2,4,5,5,6,7], has repeating elements, how to remove same and also remove the odd numbers from array?
 
-## Answer:
-
 <pre>
 const arr = [0, 0, 2, 4, 5, 5, 6, 7];
 let distinctArray = [...new Set(arr)];
@@ -35,8 +31,6 @@ console.log(distinctArray) // [0, 2, 4, 6]
 </pre>
 
 ## Q3 How to merge arr1=[1,2,3] with arr2=[4,5]? Also how to merge obj1={a:1,b:2,c:3} with obj2={d:4,e:5}?
-
-## Answer:
 
 <pre>
 const arr1 = [1, 2, 3];
@@ -67,16 +61,12 @@ console.log(mergedObj);
 
 ## Q4 How to find the second largest array element in an array, say arr1=[2,5,14,8,3,11,1]?
 
-## Answer:
-
 ## Q5 A variation in Q1 write a function while will give output:
 
 <pre>
 console.log(sum(2,3));   // 5
 console.log(sum(2)(3));  // 5
 </pre>
-
-## Answer:
 
 ## Q6 What will be the output of following code?
 
@@ -114,8 +104,6 @@ console.log(y);
 
 ## Q10 List 3 ways to clear an array and an object.
 
-## Answer :
-
 ### i. One way would be
 
 <pre>
@@ -124,8 +112,6 @@ arr1 = []
 </pre>
 
 ## Q11 What is th difference between const and Object.freeeze(), illustrate with example.
-
-## Answer:
 
 For const reassignment is not allowed but we can mutate the already assigned property, see:
 
@@ -182,8 +168,6 @@ var obj = {
 obj.name // "John Doe"
 obj.city // "Toronto"
 </pre>
-
-## Answer
 
 A solution with recursive function call
 
