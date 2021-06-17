@@ -71,12 +71,12 @@ console.log(mergedObj);
 
 ## Q5 A variation in Q1 write a function while will give output:
 
-## Answer:
-
 <pre>
 console.log(sum(2,3));   // 5
 console.log(sum(2)(3));  // 5
 </pre>
+
+## Answer:
 
 ## Q6 What will be the output of following code?
 
@@ -114,8 +114,103 @@ console.log(y);
 
 ## Q10 List 3 ways to clear an array and an object.
 
+## Answer :
+
+### i. One way would be
+
+<pre>
+var arr1 = [1, 2];
+arr1 = []
+</pre>
+
+## Q11 What is th difference between const and Object.freeeze(), illustrate with example.
+
+## Answer:
+
+For const reassignment is not allowed but we can mutate the already assigned property, see:
+
+<pre>
+var obj2 = { name: "John Doe" };
+Object.freeze(obj2);
+// obj2.name = "Jane Doe"; // fails silently
+obj2 = { name: "Jane Doe" }; // allowed
+console.log(obj2); // { name: "Jane Doe" }
+</pre>
+
+For arrays:
+
+<pre>
+const arr1 = [1, 2];
+// arr1 = [2, 3]; //  Assignment to constant variable error
+arr1.push(3);
+console.log(arr1); // [ 1, 2, 3 ]
+</pre>
+
+For Object.freeze() reassignment is allowed but we cannot mutate the currently assigned property, as below
+
+<pre>
+var obj2 = { name: "John Doe" };
+Object.freeze(obj2);
+// obj2.name = "Jane Doe"; // fails silently
+obj2 = { name: "Jane Doe" }; // allowed
+console.log(obj2); // { name: "Jane Doe" }
+</pre>
+
+How to solve this? Use const w/ freeze. Also see "Deep Freeze" for objects.
+
 ## Q12 Given two strings, write a function that take them as inputs and return true if they are anagrams of one another.
 
-## Q14 
+## Q14
+
 ## i. Write a program to find factorial of a number. Write using recursion and not using recursion.
+
 ## ii. Write a program to print n terms of Fibonacci series. Write using recursion and not using recursion.
+
+## Q15 For a given object, flatten it so that it does not contain any nested objects and the properties can be accessed as:
+
+<pre>
+var obj = {
+  user: {
+    name: "John Doe",
+    address: {
+      city: "Toronto",
+      country: "Canada PR",
+    },
+  },
+};
+
+obj.name // "John Doe"
+obj.city // "Toronto"
+</pre>
+
+## Answer
+
+A solution with recursive function call
+
+<pre>
+var obj = {
+  user: {
+    name: "John Doe",
+    address: {
+      city: "Toronto",
+      country: "Canada PR",
+    },
+  },
+};
+
+var newObj = {};
+
+function flattenObj(objectArg) {
+  for (objElem in objectArg) {
+    if (objectArg[objElem] instanceof Object) {
+      // typeof objectArg[objElem] === "object"
+      flattenObj(objectArg[objElem]);
+    } else {
+      newObj[objElem] = objectArg[objElem];
+    }
+  }
+}
+
+flattenObj(obj);
+console.log(newObj); // { name: 'John Doe', city: 'Toronto', country: 'Canada PR' }
+</pre>
