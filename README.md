@@ -2,62 +2,64 @@
 
 ## Q1. Write a function add(1)(1) that will add two numbers.
 
-<pre>
-const add = function(x) {
-  return function(y) {
-    console.log(x + y)
-  }
-}
+```javascript
+const add = function (x) {
+  return function (y) {
+    console.log(x + y);
+  };
+};
 
-add(1)(1) // 2
-</pre>
+add(1)(1); // 2
+```
 
 With ES6 arror shorthand syntax this can be done as:
 
-<pre>
-const add = (x) => (y) => (console.log(x + y));
+```javascript
+const add = (x) => (y) => console.log(x + y);
 
-add(1)(1) // 2
-</pre>
+add(1)(1); // 2
+```
 
 ## Q2. An array, say arr=[0,0,2,4,5,5,6,7], has repeating elements, how to remove same and also remove the odd numbers from array?
 
-<pre>
+```javascript
 const arr = [0, 0, 2, 4, 5, 5, 6, 7];
 let distinctArray = [...new Set(arr)];
-distinctArray = distinctArray.filter(elem => elem === 0 || (elem > 0 && elem % 2 === 0))
+distinctArray = distinctArray.filter(
+  (elem) => elem === 0 || (elem > 0 && elem % 2 === 0)
+);
 
-console.log(distinctArray) // [0, 2, 4, 6]
-</pre>
+console.log(distinctArray); // [0, 2, 4, 6]
+```
 
 ## Q3 How to merge arr1=[1,2,3] with arr2=[4,5]? Also how to merge obj1={a:1,b:2,c:3} with obj2={d:4,e:5}?
 
-<pre>
+```javascript
 const arr1 = [1, 2, 3];
 const arr2 = [4, 5];
 
-const obj1 = {a: 1,b: 2,c: 3};
-const obj2 = {d: 4,e: 5};
+const obj1 = { a: 1, b: 2, c: 3 };
+const obj2 = { d: 4, e: 5 };
 
-const mergedArr = [...arr1,...arr2];
+const mergedArr = [...arr1, ...arr2];
 console.log(mergedArr);
 // [1,2,3,4,5]
 
-const mergedObj = {...obj1,...obj2}
-console.log(mergedObj)
+const mergedObj = { ...obj1, ...obj2 };
+console.log(mergedObj);
 // {a: 1,b: 2,c: 3,d: 4,e: 5}
-</pre>
+```
 
 We can also merge two objects using Object.assign as:
 
-<pre>
-const obj1 = {a: 1,b: 2,c: 3};
-const obj2 = {d: 4,e: 5};
+```javascript
+const obj1 = { a: 1, b: 2, c: 3 };
+const obj2 = { d: 4, e: 5 };
 const mergedObj = Object.assign(obj1, obj2);
 
 console.log(mergedObj);
 // {a: 1,b: 2,c: 3,d: 4,e: 5}
-</pre>
+```
 
 ## Q4 How to find the second largest array element in an array, say arr1=[2,5,14,8,3,11,1]?
 
@@ -106,41 +108,41 @@ console.log(y);
 
 ### i. One way would be
 
-<pre>
+```javascript
 var arr1 = [1, 2];
-arr1 = []
-</pre>
+arr1 = [];
+```
 
-## Q11 What is th difference between const and Object.freeeze(), illustrate with example.
+## Q11 What is th difference between const and Object.freeze(), illustrate with example.
 
 For const reassignment is not allowed but we can mutate the already assigned property, see:
 
-<pre>
+```javascript
 var obj2 = { name: "John Doe" };
 Object.freeze(obj2);
 // obj2.name = "Jane Doe"; // fails silently
 obj2 = { name: "Jane Doe" }; // allowed
 console.log(obj2); // { name: "Jane Doe" }
-</pre>
+```
 
 For arrays:
 
-<pre>
+```javascript
 const arr1 = [1, 2];
 // arr1 = [2, 3]; //  Assignment to constant variable error
 arr1.push(3);
 console.log(arr1); // [ 1, 2, 3 ]
-</pre>
+```
 
 For Object.freeze() reassignment is allowed but we cannot mutate the currently assigned property, as below
 
-<pre>
+```javascript
 var obj2 = { name: "John Doe" };
 Object.freeze(obj2);
 // obj2.name = "Jane Doe"; // fails silently
 obj2 = { name: "Jane Doe" }; // allowed
 console.log(obj2); // { name: "Jane Doe" }
-</pre>
+```
 
 How to solve this? Use const w/ freeze. Also see "Deep Freeze" for objects.
 
@@ -151,6 +153,8 @@ How to solve this? Use const w/ freeze. Also see "Deep Freeze" for objects.
 ## i. Write a program to find factorial of a number. Write using recursion and not using recursion.
 
 ## ii. Write a program to print n terms of Fibonacci series. Write using recursion and not using recursion.
+
+## iii. Write a program to check if a number is Armstrong number or not.
 
 ## Q15 For a given object, flatten it so that it does not contain any nested objects and the properties can be accessed as:
 
@@ -171,7 +175,7 @@ obj.city // "Toronto"
 
 A solution with recursive function call
 
-<pre>
+```javascript
 var obj = {
   user: {
     name: "John Doe",
@@ -197,4 +201,115 @@ function flattenObj(objectArg) {
 
 flattenObj(obj);
 console.log(newObj); // { name: 'John Doe', city: 'Toronto', country: 'Canada PR' }
-</pre>
+```
+
+## Q16 Illustrate event bubbling with an example, how can you stop event bubbling?
+
+We can take three nested divs as below, div1 is the grandparent div, div2 is the middle/ parent div and lastly div3 is the child div. If we click the child div ie. div3 the other div(s) get clicked in order: child -> parent -> grandpa. This is event bubbling.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Bubbling & Event Trickling</title>
+    <style>
+      div#div1 {
+        background-color: chartreuse;
+        height: 200px;
+        width: 200px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      div#div2 {
+        background-color: chocolate;
+        height: 150px;
+        width: 150px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      div#div3 {
+        background-color: darksalmon;
+        height: 100px;
+        width: 100px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="div1" onclick="handleGrandPaDivClick(event)">
+      <div id="div2" onclick="handleParentDivClick(event)">
+        <div id="div3" onclick="handleChildDivClick(event)"></div>
+      </div>
+    </div>
+    <script>
+      function handleGrandPaDivClick(event) {
+        console.log("GRANDPA");
+        // console.log(event);
+      }
+
+      function handleParentDivClick(event) {
+        console.log("PARENT");
+        // console.log(event)
+        // event.stopPropagation();
+      }
+
+      function handleChildDivClick(event) {
+        console.log("CHILD");
+        // console.log(event)
+        event.stopPropagation();
+      }
+    </script>
+  </body>
+</html>
+```
+
+## Q17 Explain event tickling with an example.
+
+```html
+<body>
+  <div id="div1">
+    <div id="div2">
+      <div id="div3"></div>
+    </div>
+  </div>
+  <script>
+    document.getElementById("div1").addEventListener(
+      "click",
+      (event) => {
+        console.log("GRANDPA");
+        event.stopPropagation();
+      },
+      true
+    );
+    document.getElementById("div2").addEventListener(
+      "click",
+      (event) => {
+        console.log("PARENT");
+        // event.stopPropagation();
+      },
+      true
+    );
+    document.getElementById("div3").addEventListener(
+      "click",
+      (event) => {
+        console.log("CHILD");
+        // event.stopPropagation();
+      },
+      true
+    );
+  </script>
+</body>
+```
