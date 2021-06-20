@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Trickling/ Capturing</title>
+    <style>
+        div#div1 {
+            background-color: pink;
+            height: 200px;
+            width: 200px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        div#div2 {
+            background-color: orangered;
+            height: 150px;
+            width: 150px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        div#div3 {
+            background-color: slateblue;
+            height: 100px;
+            width: 100px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div1">
+        <div id="div2">
+            <div id="div3"></div>
+        </div>
+    </div>
+    <script>
+        document.getElementById("div1").addEventListener('click', (event) => {
+            console.log("GRANDPA");
+            event.stopPropagation();
+
+        }, true);
+        document.getElementById("div2").addEventListener('click', (event) => {
+            console.log("PARENT");
+            // event.stopPropagation();
+        }, true);
+        document.getElementById("div3").addEventListener('click', (event) => {
+            console.log("CHILD");
+            // event.stopPropagation();
+        }, true);
+    </script>
+</body>
+
+</html>

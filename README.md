@@ -370,6 +370,7 @@ To put it eloquently we can move the funtion out of the object and reuse as:
 function getSalary(basic, hra, other) {
   const salary = basic + hra + other;
   console.log(
+    // this.emp1.firstName as this === emp1
     this.firstName +
       " " +
       this.lastName +
