@@ -82,6 +82,8 @@ console.log(b);
 
 ## Please explain with presudo code if possible.
 
+b would be undefined ie. in the console it would print "undefined"
+
 ## Q7 What will be the output for below code snippet?
 
 <pre>
@@ -313,3 +315,85 @@ We can take three nested divs as below, div1 is the grandparent div, div2 is the
   </script>
 </body>
 ```
+
+## Q18 Explain call, bind and apply with examples.
+
+Call and apply are interchangable. The only difference would be how the arguments are passed to call/ apply when invoking a function.
+Say we have a employee object and a function that prints the employee name, as:
+
+```javascript
+var firstEmployee = {
+  firstName: "Jane",
+  lastName: "Doe",
+  printFullName: function () {
+    // this: {
+    // firstName: string;
+    // lastName: string;
+    // printFullName: () => void;}
+    console.log(this.firstName, this.lastName);
+  },
+};
+
+firstEmployee.printFullName();
+```
+
+Now for another employee, we will have another object and we will have to print out the name as:
+
+```javascript
+// this is not DRY
+var secondEmployee = {
+  firstName: "John",
+  lastName: "Doe",
+  printFullName: function () {
+    console.log(this.firstName, this.lastName);
+  },
+};
+
+secondEmployee.printFullName();
+```
+
+But this is not DRY and increased the lines of code. Solution would be to use call/ apply
+
+```javascript
+// we can do function borrowing instead
+var secondEmployee = {
+  firstName: "John",
+  lastName: "Doe",
+};
+firstEmployee.printFullName.call(secondEmployee);
+```
+
+To put it eloquently we can move the funtion out of the object and reuse as:
+
+```javascript
+// say the function now takes in argument and uses them as well
+function getSalary(basic, hra, other) {
+  const salary = basic + hra + other;
+  console.log(
+    this.firstName +
+      " " +
+      this.lastName +
+      " will receive salary of INR " +
+      salary
+  );
+}
+
+getSalary.call(emp1, 15000, 8000, 5000);
+getSalary.call(emp2, 17000, 10000, 7000);
+```
+
+For apply it would be as below. Notice that the arguments are passsed as on array.
+
+```javascript
+getSalary.apply(emp1, [15000, 8000, 5000]);
+getSalary.apply(emp2, [17000, 10000, 7000]);
+```
+
+Bind creates a copy of the function and stores it for later use
+
+```javascript
+const getSalaryForPeterParker = getSalary.bind(emp1, 15000, 8000, 5000);
+getSalaryForPeterParker();
+```
+
+## Q19 Explain hoisting with a simple example.
