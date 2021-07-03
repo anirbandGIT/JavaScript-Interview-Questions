@@ -1,0 +1,25 @@
+{
+  "name": "interview-questions",
+  "version": "1.0.0",
+  "description": "```javascript\r const add = function (x) {\r   return function (y) {\r     console.log(x + y);\r   };\r };",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anirbandGIT/JavaScript-Interview-Questions.git"
+  },
+  "author": "Anirban Das",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anirbandGIT/JavaScript-Interview-Questions/issues"
+  },
+  "homepage": "https://github.com/anirbandGIT/JavaScript-Interview-Questions#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^15.14.0",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.5"
+  }
+}
